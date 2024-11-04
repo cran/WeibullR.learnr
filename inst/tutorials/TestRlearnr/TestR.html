@@ -14,7 +14,7 @@
 <meta name="allow-skip" content="true" />
 <meta name="learnr-version-prerender" content="0.11.5" />
 
-<title>An Introduction to Life Data Analysis</title>
+<title>Reliability Testing</title>
 
 <!-- header-includes START -->
 <!-- HEAD_CONTENT -->
@@ -111,51 +111,50 @@ if (window.hljs) {
 
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Welcome to the tutorial on <strong>Life Data Analysis</strong>! In
-this tutorial, you will learn about the basics of life data analysis and
-how to apply it to various fields, such as the automotive industry.</p>
+<p>Welcome to the tutorial on <strong>Reliability Testing</strong>! In
+this tutorial, you will learn about different types of reliability tests
+and how to apply them</p>
 </div>
-<div id="section-what-is-life-data-analysis" class="section level2">
-<h2>What is Life Data Analysis?</h2>
-<p>Life data analysis is the study of how things, from machines to
-people, function over time. For example, in the automotive industry,
-life data analysis helps explain how long cars will last before they
-break down.</p>
+<div id="section-what-is-reliability-testing" class="section level2">
+<h2>What is Reliability Testing?</h2>
+<p>Reliability testing is a process to ensure that a product or system
+performs its intended functions under specified conditions over a
+defined period. For example, in the automotive industry, we may want to
+design a car that runs without breaking down for 5 to 10 years.</p>
 </div>
-<div id="section-why-is-life-data-analysis-important"
+<div id="section-why-is-reliability-testing-important"
 class="section level2">
-<h2>Why is Life Data Analysis Important?</h2>
-<p>Understanding life data analysis helps in predicting the lifespan and
-maintenance needs of various systems, thereby improving reliability and
-efficiency. By collecting and modeling life data, we can make
-predictions about how long cars will last or how long before they will
-need to be repaired or replaced.</p>
+<h2>Why is Reliability Testing important?</h2>
+<p>Reliability testing is important because it helps reduce the risk of
+an unknown or unvalidated product or system and could potentially lower
+costs for repairs and replacements later in the life of the product.</p>
 </div>
 <div id="section-learning-objectives" class="section level2">
 <h2>Learning Objectives</h2>
 <p>After completing this module, you should have a basic understanding
 of and a chance to apply the following concepts:</p>
 <ul>
-<li>Weibull analysis</li>
-<li>Data censoring, including Right Censored and Interval Censored
-Data</li>
-<li>Different types of Weibull models, including the 2P Weibull, 3P
-Weibull, and Weibayes model</li>
-<li>Parameter estimation methods Median Rank Regression (MRR) and
-Maximum Likelihood Estimation (MLE)</li>
-<li>Different plotting methods such as Probability Plots and Contour
-Plots</li>
+<li>Reliability Growth Analysis (RGA) including:
+<ul>
+<li>The Duane model</li>
+<li>Crow-AMSAA models</li>
+</ul></li>
+<li>Accelerated Life Tests (ALT) including:
+<ul>
+<li>The Arrhenius Model</li>
+<li>The Power Law Model</li>
+<li>The Eyring Model</li>
+</ul></li>
 </ul>
 </div>
-<div id="section-weibull-analysis" class="section level2">
-<h2>Weibull Analysis</h2>
-<div id="section-the-weibull-distribution" class="section level3">
-<h3>The Weibull Distribution</h3>
-<p>Life data analysis is often referred to as Weibull analysis because
-the Weibull distribution is commonly used to model life data.</p>
-</div>
-<div id="section-why-the-weibull-distribution" class="section level3">
-<h3>Why the Weibull Distribution?</h3>
+<div id="section-reliability-growth-analysis" class="section level2">
+<h2>Reliability Growth Analysis</h2>
+<p>Reliability Growth Analysis (RGA) is a method to monitor and improve,
+or grow, the reliability of a product or system over time. Often the
+product improves due to changes in the design throughout the testing
+period.</p>
+<div id="section-the-duane-model" class="section level3">
+<h3>The Duane Model</h3>
 <p>The Weibull is a <strong>flexible</strong> distribution that can fit
 many different types of data.</p>
 </div>
@@ -166,7 +165,7 @@ deviation of 1.5.</p>
 <pre class="r"><code>x &lt;- seq(0, 10, by = .1)
 y &lt;- dnorm(x, mean = 5, sd = 1.5)
 plot(x,y, type = &quot;l&quot;, col = &quot;blue&quot;, xlab = &quot;Variable&quot;, ylab = &quot;Probability&quot;)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-1-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
 <div id="section-the-weibull-vs-normal" class="section level3">
 <h3>The Weibull vs Normal</h3>
@@ -266,7 +265,7 @@ and 96 respectively. Then use the <code>MLEw2p</code> function to fit a
 Weibull to the data using the MLE method.</p>
 <pre class="r"><code>failures&lt;-c(30, 49, 82, 90, 96)
 fit&lt;-MLEw2p(failures, bounds=TRUE, show=TRUE)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-9-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <div id="section-the-weibull-probability-plot" class="section level3">
 <h3>The Weibull Probability Plot</h3>
@@ -313,7 +312,7 @@ the 5 machines that failed, add suspensions for 3 machines that did not
 fail (right censored) at times 100, 45, and 10 respectively.</p>
 <pre class="r"><code>suspensions&lt;-c(100, 45, 10)
 fit&lt;-MLEw2p(failures, suspensions, bounds=TRUE, show=TRUE)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-10-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-10-1.png" width="624" /></p>
 </div>
 <div id="section-interval-censored-data" class="section level3">
 <h3>Interval Censored Data</h3>
@@ -336,7 +335,7 @@ inspection date.</p>
 obj1&lt;-wblr.fit(obj1, method.fit=&quot;mle&quot;, col=&quot;red&quot;) 
 obj1&lt;-wblr.conf(obj1, method.conf=&quot;fm&quot;, lty=2)
 plot(obj1)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-13-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
 <div id="section-grouped-data" class="section level3">
 <h3>Grouped Data</h3>
@@ -386,7 +385,7 @@ methods.</p>
 <pre class="r"><code>MRRfit &lt;- wblr.conf(wblr.fit(wblr(failures, suspensions, col=&quot;blue&quot;), method.fit=&quot;rr&quot;))
 MLEfit &lt;- wblr.conf(wblr.fit(wblr(failures, suspensions, col=&quot;red&quot;), method.fit=&quot;mle&quot;), method.conf=&quot;lrb&quot;)
 plot.wblr(list(MRRfit, MLEfit))</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-14-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-14-1.png" width="624" /></p>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="mrr-vs-mle" class="tutorial-question panel-body">
 <div id="mrr-vs-mle-answer_container" class="shiny-html-output"></div>
@@ -414,7 +413,7 @@ and/or other Weibull models do not fit the data well.</p>
 suspensions&lt;-c(100, 45, 10)
 obj &lt;- wblr.fit(wblr(failures, suspensions, col=&quot;blue&quot;), method.fit=&quot;weibayes&quot;, weibayes.beta=2)
 plot(obj)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-15-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-15-1.png" width="624" /></p>
 </div>
 <div id="section-the-3-parameter-weibull-model" class="section level3">
 <h3>The 3-Parameter Weibull Model</h3>
@@ -433,7 +432,7 @@ a 3P Weibull.</p>
             53.91168)
 fit&lt;- wblr.conf(wblr.fit(wblr(failures), dist=&quot;weibull3p&quot;), col=&quot;darkgreen&quot;)
 plot(fit)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-16-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-16-1.png" width="624" /></p>
 </div>
 <div id="section-exercises-3" class="section level3">
 <h3>Exercises</h3>
@@ -475,7 +474,7 @@ obj2&lt;-wblr.conf(wblr.fit(wblr(failures, suspensions, col=&quot;purple&quot;),
 <p>Add the 2 <code>wblr</code> objects to a list and plot both objects
 in a single chart.</p>
 <pre class="r"><code>plot.wblr(list(obj1, obj2))</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-21-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-21-1.png" width="624" /></p>
 </div>
 <div id="section-exercises-4" class="section level3">
 <h3>Exercises</h3>
@@ -511,7 +510,7 @@ data &lt;- data.frame(
 does not appear to be linear.</p>
 <pre class="r"><code>obj &lt;- wblr.conf(wblr.fit(wblr(data)))
 plot(obj, col=&quot;darkgreen&quot;, is.plot.legend = FALSE)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-23-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-23-1.png" width="624" /></p>
 <p>Now create a separate data set for each failure mode.</p>
 <pre class="r"><code>dat1 &lt;- data
 dat2 &lt;- data
@@ -525,7 +524,7 @@ multi-plot.</p>
 obj2 &lt;- wblr.fit(wblr(dat2, col=&quot;red&quot;))
 obj3 &lt;- wblr.fit(wblr(dat3, col=&quot;orange&quot;))
 plot.wblr(list(obj1, obj2, obj3), is.plot.legend = FALSE)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-25-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-25-1.png" width="624" /></p>
 </div>
 <div id="section-contour-plots" class="section level2">
 <h2>Contour Plots</h2>
@@ -538,7 +537,7 @@ plot.</p>
 <pre class="r"><code>failures&lt;-c(30, 49, 82, 90, 96)
 obj &lt;- wblr.conf(wblr.fit(wblr(failures, col=&quot;blue&quot;), method=&quot;mle&quot;), method=&quot;lrb&quot;)
 plot_contour(obj, CL=0.9)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-26-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-26-1.png" width="624" /></p>
 <p>The Weibull contour plot shows Eta on the horizontal axis, Beta on
 the vertical axis, and the contour plot at the selected probability (90%
 in this case).</p>
@@ -556,7 +555,7 @@ level of 90%.</p>
 obj2 &lt;- wblr.conf(wblr.fit(wblr(dat2, col=&quot;red&quot;), method=&quot;mle&quot;), method=&quot;lrb&quot;)
 obj3 &lt;- wblr.conf(wblr.fit(wblr(dat3, col=&quot;orange&quot;), method=&quot;mle&quot;), method=&quot;lrb&quot;)
 plot_contour(list(obj1, obj2, obj3), CL=0.9)</code></pre>
-<p><img src="WeibullRlearnr_files/figure-html/unnamed-chunk-27-1.png" width="624" /></p>
+<p><img src="TestR_files/figure-html/unnamed-chunk-27-1.png" width="624" /></p>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="contour-plots" class="tutorial-question panel-body">
 <div id="contour-plots-answer_container" class="shiny-html-output"></div>
@@ -647,16 +646,16 @@ output$distPlot <- renderPlot({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "beta", question = structure("Which beta below may indicate a wear out failure mode?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_6b823f", 
+"character")), answers = list(structure(list(id = "lnr_ans_e520882", 
     option = "1", value = "1", label = structure("1", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e2fc7e4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_663255d", 
     option = "0.5", value = "0.5", label = structure("0.5", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5032961", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_58b6569", 
     option = "2", value = "2", label = structure("2", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c3917f3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9d2f4c6", 
     option = "0", value = "0", label = structure("0", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -666,23 +665,23 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "beta-answer", question = "beta"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = FALSE, seed = 437678454.29619, 
+    random_answer_order = TRUE, allow_retry = FALSE, seed = 1521126383.79167, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "eta", question = structure("What does the parameter eta represent?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_e82dc68", 
+"character")), answers = list(structure(list(id = "lnr_ans_8b73463", 
     option = "shape parameter", value = "shape parameter", label = structure("shape parameter", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b5dcc42", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3e1afea", 
     option = "scale parameter", value = "scale parameter", label = structure("scale parameter", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a0ecc73", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5a2824f", 
     option = "failure rate", value = "failure rate", label = structure("failure rate", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3fc5a9d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9f60db", 
     option = "mean time between failures", value = "mean time between failures", 
     label = structure("mean time between failures", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -693,7 +692,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "eta-answer", question = "eta"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = FALSE, seed = 955776590.054932, 
+    random_answer_order = TRUE, allow_retry = FALSE, seed = 320298722.350849, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -717,16 +716,16 @@ output$cummPlot2 <- renderPlot({
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "unreliability", 
     question = structure("What is the approximate unreliability at time 100?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_a5e091d", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9da10be", 
         option = "20%", value = "20%", label = structure("20%", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1dde6d4", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_169af3f", 
         option = "80%", value = "80%", label = structure("80%", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_77ee0a8", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b450408", 
         option = "10%", value = "10%", label = structure("10%", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_18cdac9", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8a3b086", 
         option = "90%", value = "90%", label = structure("90%", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -737,22 +736,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "unreliability-answer", question = "unreliability"), 
     loading = NULL, random_answer_order = TRUE, allow_retry = FALSE, 
-    seed = 859404103.099809, options = list()), class = c("learnr_radio", 
+    seed = 248576834.384247, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "b50", question = structure("What is the approximate reliability at time 50?)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f2d3fe3", 
+"character")), answers = list(structure(list(id = "lnr_ans_15f4bb3", 
     option = "20%", value = "20%", label = structure("20%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bc1ad83", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ed0b330", 
     option = "80%", value = "80%", label = structure("80%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4a37f1a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_49445c4", 
     option = "10", value = "10", label = structure("10", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2e9675d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_163901a", 
     option = "90", value = "90", label = structure("90", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -762,7 +761,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "b50-answer", question = "b50"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = FALSE, seed = 48152464.4775773, 
+    random_answer_order = TRUE, allow_retry = FALSE, seed = 1694603440.71089, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -770,16 +769,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "qty", question = structure("In the interval censored example, how many units are in the group of suspensions that did not fail?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3078f53", 
+"character")), answers = list(structure(list(id = "lnr_ans_e8e4926", 
     option = "73", value = "73", label = structure("73", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_90cebab", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_90611bd", 
     option = "17", value = "17", label = structure("17", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5caedff", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1276de3", 
     option = "94", value = "94", label = structure("94", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f53b9b0", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dc0be9d", 
     option = "63.48", value = "63.48", label = structure("63.48", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -789,7 +788,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "qty-answer", question = "qty"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = FALSE, seed = 1751167369.18455, 
+    random_answer_order = TRUE, allow_retry = FALSE, seed = 179090348.416605, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -797,16 +796,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "failure-count", 
     question = structure("In the interval censored example, how many total failures occurred?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_6794a34", 
+    "character")), answers = list(structure(list(id = "lnr_ans_5a0fbeb", 
         option = "73", value = "73", label = structure("73", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_97fd791", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_50ca9f9", 
         option = "17", value = "17", label = structure("17", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cbcb2e8", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c7d62f", 
         option = "94", value = "94", label = structure("94", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5c12988", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_460cb60", 
         option = "63.48", value = "63.48", label = structure("63.48", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -817,7 +816,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "failure-count-answer", question = "failure-count"), 
     loading = NULL, random_answer_order = TRUE, allow_retry = FALSE, 
-    seed = 988132967.039865, options = list()), class = c("learnr_radio", 
+    seed = 940187817.562191, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1000,8 +999,8 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h1 class="title toc-ignore" style="display:none;">An Introduction to
-Life Data Analysis</h1>
+<h1 class="title toc-ignore" style="display:none;">Reliability
+Testing</h1>
 </div>
 <!-- end doc-metadata -->
 
